@@ -1,13 +1,8 @@
-src/ASF/common/services/clock/sam4s/sysclk.d \
- src/ASF/common/services/clock/sam4s/sysclk.o: \
- ../src/ASF/common/services/clock/sam4s/sysclk.c \
- ../src/ASF/common/services/clock/sysclk.h \
- ../src/ASF/common/utils/parts.h ../src/config/conf_clock.h \
- ../src/ASF/common/services/clock/sam4s/sysclk.h \
- ../src/ASF/common/services/clock/osc.h \
- ../src/ASF/common/services/clock/sam4s/osc.h \
- ../src/ASF/common/boards/board.h ../src/ASF/sam/utils/compiler.h \
+src/ov2640_table_registers.d src/ov2640_table_registers.o: \
+ ../src/ov2640_table_registers.c ../src/ASF/common/boards/board.h \
+ ../src/ASF/sam/utils/compiler.h \
  d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
+ ../src/ASF/common/utils/parts.h \
  ../src/ASF/sam/utils/preprocessor/preprocessor.h \
  ../src/ASF/sam/utils/preprocessor/tpaste.h \
  ../src/ASF/sam/utils/preprocessor/stringz.h \
@@ -112,27 +107,25 @@ src/ASF/common/services/clock/sam4s/sysclk.d \
  ../src/ASF/common/utils/interrupt.h \
  ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h \
  ../src/ASF/common/boards/user_board/user_board.h \
- ../src/config/conf_board.h ../src/ASF/sam/drivers/pmc/pmc.h \
- ../src/ASF/common/services/clock/pll.h \
- ../src/ASF/common/services/clock/sam4s/pll.h
-
-../src/ASF/common/services/clock/sysclk.h:
-
-../src/ASF/common/utils/parts.h:
-
-../src/config/conf_clock.h:
-
-../src/ASF/common/services/clock/sam4s/sysclk.h:
-
-../src/ASF/common/services/clock/osc.h:
-
-../src/ASF/common/services/clock/sam4s/osc.h:
+ ../src/config/conf_board.h ../src/ov2640.h \
+ ../src/ASF/sam/drivers/twi/twi.h \
+ ../src/ASF/common/services/delay/delay.h \
+ ../src/ASF/common/services/clock/sysclk.h ../src/config/conf_clock.h \
+ ../src/ASF/common/services/clock/sam4s/sysclk.h \
+ ../src/ASF/common/services/clock/osc.h \
+ ../src/ASF/common/services/clock/sam4s/osc.h \
+ ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
+ ../src/ASF/common/services/clock/sam4s/pll.h \
+ ../src/ASF/common/services/delay/sam/cycle_counter.h \
+ ../src/ASF/sam/drivers/pio/pio.h
 
 ../src/ASF/common/boards/board.h:
 
 ../src/ASF/sam/utils/compiler.h:
 
 d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h:
+
+../src/ASF/common/utils/parts.h:
 
 ../src/ASF/sam/utils/preprocessor/preprocessor.h:
 
@@ -344,8 +337,28 @@ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/config/conf_board.h:
 
+../src/ov2640.h:
+
+../src/ASF/sam/drivers/twi/twi.h:
+
+../src/ASF/common/services/delay/delay.h:
+
+../src/ASF/common/services/clock/sysclk.h:
+
+../src/config/conf_clock.h:
+
+../src/ASF/common/services/clock/sam4s/sysclk.h:
+
+../src/ASF/common/services/clock/osc.h:
+
+../src/ASF/common/services/clock/sam4s/osc.h:
+
 ../src/ASF/sam/drivers/pmc/pmc.h:
 
 ../src/ASF/common/services/clock/pll.h:
 
 ../src/ASF/common/services/clock/sam4s/pll.h:
+
+../src/ASF/common/services/delay/sam/cycle_counter.h:
+
+../src/ASF/sam/drivers/pio/pio.h:

@@ -1,5 +1,4 @@
-src/ASF/sam/drivers/pmc/pmc.d src/ASF/sam/drivers/pmc/pmc.o: \
- ../src/ASF/sam/drivers/pmc/pmc.c ../src/ASF/sam/drivers/pmc/pmc.h \
+src/ov2640.d src/ov2640.o: ../src/ov2640.c ../src/ov2640.h \
  ../src/ASF/sam/utils/compiler.h \
  d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h \
@@ -105,9 +104,25 @@ src/ASF/sam/drivers/pmc/pmc.d src/ASF/sam/drivers/pmc/pmc.o: \
  d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\machine\stdlib.h \
  d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h \
  ../src/ASF/common/utils/interrupt.h \
- ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h
+ ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h \
+ ../src/ASF/common/boards/board.h \
+ ../src/ASF/common/boards/user_board/user_board.h \
+ ../src/config/conf_board.h ../src/ASF/sam/drivers/twi/twi.h \
+ ../src/ASF/common/services/delay/delay.h \
+ ../src/ASF/common/services/clock/sysclk.h ../src/config/conf_clock.h \
+ ../src/ASF/common/services/clock/sam4s/sysclk.h \
+ ../src/ASF/common/services/clock/osc.h \
+ ../src/ASF/common/services/clock/sam4s/osc.h \
+ ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
+ ../src/ASF/common/services/clock/sam4s/pll.h \
+ ../src/ASF/common/services/delay/sam/cycle_counter.h \
+ ../src/ASF/sam/drivers/pio/pio.h \
+ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h \
+ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\xlocale.h \
+ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h \
+ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\assert.h
 
-../src/ASF/sam/drivers/pmc/pmc.h:
+../src/ov2640.h:
 
 ../src/ASF/sam/utils/compiler.h:
 
@@ -320,3 +335,41 @@ d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/common/utils/interrupt.h:
 
 ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h:
+
+../src/ASF/common/boards/board.h:
+
+../src/ASF/common/boards/user_board/user_board.h:
+
+../src/config/conf_board.h:
+
+../src/ASF/sam/drivers/twi/twi.h:
+
+../src/ASF/common/services/delay/delay.h:
+
+../src/ASF/common/services/clock/sysclk.h:
+
+../src/config/conf_clock.h:
+
+../src/ASF/common/services/clock/sam4s/sysclk.h:
+
+../src/ASF/common/services/clock/osc.h:
+
+../src/ASF/common/services/clock/sam4s/osc.h:
+
+../src/ASF/sam/drivers/pmc/pmc.h:
+
+../src/ASF/common/services/clock/pll.h:
+
+../src/ASF/common/services/clock/sam4s/pll.h:
+
+../src/ASF/common/services/delay/sam/cycle_counter.h:
+
+../src/ASF/sam/drivers/pio/pio.h:
+
+d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h:
+
+d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\xlocale.h:
+
+d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h:
+
+d:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\assert.h:
