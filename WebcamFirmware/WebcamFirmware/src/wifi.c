@@ -2,17 +2,17 @@
 Authors: Petras Swissler, Sasha Portnova, Wenja Zhou
 ---------------------------------------------------------------------
 wifi.c contains
-– WiFi variable initializations.
-– void WIFI USART HANDLER(void)
-– void process incoming byte wifi(uint8 t in byte)
+?WiFi variable initializations.
+?void WIFI USART HANDLER(void)
+?void process incoming byte wifi(uint8 t in byte)
 - void wifi command response handler(uint32 t ul id, uint32 t ul mask)
-– void process data wifi (void)
-– void wifi web setup handler(uint32 t ul id, uint32 t ul mask)
-– void configure usart wifi(void)
-– void configure wifi comm pin(void)
-– void configure wifi web setup pin(void)
-– void write wifi command(char* comm, uint8 t cnt)
-– void write image to file(void)
+?void process data wifi (void)
+?void wifi web setup handler(uint32 t ul id, uint32 t ul mask)
+?void configure usart wifi(void)
+?void configure wifi comm pin(void)
+?void configure wifi web setup pin(void)
+?void write wifi command(char* comm, uint8 t cnt)
+?void write image to file(void)
 //////////////////////////////////////////////////////////////////*/
 #include "wifi.h"
 
@@ -110,10 +110,10 @@ void write_wifi_command(char* comm, uint8_t cnt)
 Writes an image from the SAM4S8B to the AMW136. If the
 length of the image is zero (i.e. the image is not valid), return. Otherwise, follow this protocol
 (illustrated in Appendix B):
-1. Issue the command “image transfer xxxx”, where xxxx is replaced by the length of the
+1. Issue the command “image transfer xxxx? where xxxx is replaced by the length of the
 image you want to transfer.
 2. After the AMW136 acknowledges that it received your command, start streaming the image.
-3. After the image is done sending, the AMW136 should say “Complete”. However, the “command complete” pin will not have a rising edge, so it will be hard to sense. You can still try
+3. After the image is done sending, the AMW136 should say “Complete? However, the “command complete?pin will not have a rising edge, so it will be hard to sense. You can still try
 to sense it before moving on, or simply insert a slight delay
 */
 void write_image_to_file(void) 
