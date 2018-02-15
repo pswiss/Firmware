@@ -14,8 +14,8 @@
 
 void board_init(void)
 {
-	/* This function is meant to contain board-specific initialization code
-	 * for, e.g., the I/O pins. The initialization can rely on application-
-	 * specific board configuration, found in conf_board.h.
-	 */
+	ioport_init();
+	ioport_set_pin_dir(WIFI_RESET,IOPORT_DIR_OUTPUT);
+	ioport_set_pin_level(WIFI_RESET,HIGH);
+
 }
