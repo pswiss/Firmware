@@ -87,11 +87,19 @@
 // From module: Part identification macros
 #include <parts.h>
 
+<<<<<<< HEAD
 // From module: SMC - Static Memory Controller
 #include <smc.h>
+=======
+// From module: Standard serial I/O (stdio) - SAM implementation
+#include <stdio_serial.h>
+>>>>>>> bb6f02efff64dcea753b21c906b2942c893f2f69
 
 // From module: System Clock Control - SAM4S implementation
 #include <sysclk.h>
+
+// From module: TC - Timer Counter
+#include <tc.h>
 
 // From module: TWI - Two-Wire Interface - SAM implementation
 #include <sam_twi/twi_master.h>
@@ -110,6 +118,9 @@
 
 // From module: USART - Univ. Syn Async Rec/Trans
 #include <usart.h>
+
+// From module: WDT - Watchdog Timer
+#include <wdt.h>
 
 // From module: pio_handler support enabled
 #include <pio_handler.h>
