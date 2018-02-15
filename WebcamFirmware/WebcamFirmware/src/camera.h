@@ -38,5 +38,4 @@
 // Image sensor data pin.
 #define OV7740_DATA_BUS_PIO            OV_DATA_BUS_PIO
 
-
 #endif // CONF_BOARD_H
