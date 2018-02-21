@@ -18,8 +18,18 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #include <string.h>
 
 // Pin Definitions
+#define PIN_CTS 
 
 // Interrupt configurations
+
+// Communication Constants
+#define BOARD_ID_USART             ID_USART0
+#define BOARD_USART                USART0
+#define BOARD_USART_BAUDRATE       115200
+#define USART_Handler              USART0_Handler
+#define USART_IRQn                 USART0_IRQn
+#define ALL_INTERRUPT_MASK  0xffffffff
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -2,6 +2,8 @@
 #include "wifi.h"
 #include "camera.h"
 #include "conf_board.h"
+#include "ov2640.h"
+#include "dimer_interface.h"
 
 /** Timer counter frequency in Hz. */
 #define TC_FREQ             1

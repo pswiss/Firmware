@@ -2,6 +2,14 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\common\utils\stdio\read.c
+
+src\ASF\common\utils\stdio\write.c
+
+src\ASF\sam\drivers\tc\tc.c
+
+src\ASF\sam\drivers\wdt\wdt.c
+
 src\ov2640.c
 
 src\ov2640_table_registers.c

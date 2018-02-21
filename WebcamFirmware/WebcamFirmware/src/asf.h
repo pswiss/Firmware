@@ -75,7 +75,7 @@
 #include <interrupt.h>
 
 // From module: OV7740 CMOS image sensor
-#include <ov7740.h>
+#include <ov2640.h>
 
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
