@@ -18,8 +18,41 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #include <string.h>
 
 // Pin Definitions
+/** USART0 pin RX */
+#define PIN_USART0_RXD    {PIO_PA5A_RXD0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}
+#define PIN_USART0_RXD_IDX        (PIO_PA5_IDX)
+#define PIN_USART0_RXD_FLAGS      (PIO_PERIPH_A | PIO_DEFAULT)
+/** USART0 pin TX */
+#define PIN_USART0_TXD    {PIO_PA6A_TXD0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}
+#define PIN_USART0_TXD_IDX        (PIO_PA6_IDX)
+#define PIN_USART0_TXD_FLAGS      (PIO_PERIPH_A | PIO_DEFAULT)
+/** USART0 pin CTS */
+#define PIN_USART0_CTS    {PIO_PA8A_CTS0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}
+#define PIN_USART0_CTS_IDX        (PIO_PA8_IDX)
+#define PIN_USART0_CTS_FLAGS      (PIO_PERIPH_A | PIO_DEFAULT)
+/** USART0 pin RTS */
+#define PIN_USART0_RTS    {PIO_PA7A_RTS0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}
+#define PIN_USART0_RTS_IDX        (PIO_PA7_IDX)
+#define PIN_USART0_RTS_FLAGS      (PIO_PERIPH_A | PIO_DEFAULT)
 
 // Interrupt configurations
+
+// Communication Constants
+#define BOARD_ID_USART				ID_USART0
+#define BOARD_USART					USART0
+#define BOARD_USART_BAUDRATE		115200
+#define USART_Handler				USART0_Handler
+#define USART_IRQn					USART0_IRQn
+#define ALL_INTERRUPT_MASK			0xffffffff
+#define MAX_INPUT_WIFI				1000
+
+// Command Complete Pin configuration
+#define WIFI_COM_COMPLETE_ID		ID_PIOB
+#define WIFI_COM_COMPLETE_PIO		PIOB
+#define WIFI_COM_COMPLETE_MSK		PIO_PB4
+#define WIFI_COM_COMPLETE_TYPE		PIO_INPUT
+#define WIFI_COM_COMPLETE_ATTR		PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +62,10 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
-
+volatile uint32_t recieved_byte_wifi;
+volatile bool new_rx_wifi;
+volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
+volatile uint32_t input_pos_wifi;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // function prototypes

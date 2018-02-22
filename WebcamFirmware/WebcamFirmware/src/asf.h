@@ -74,6 +74,9 @@
 // From module: Interrupt management - SAM implementation
 #include <interrupt.h>
 
+// From module: OV7740 CMOS image sensor
+#include <ov2640.h>
+
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
 
@@ -84,8 +87,13 @@
 // From module: Part identification macros
 #include <parts.h>
 
+<<<<<<< HEAD
+// From module: SMC - Static Memory Controller
+#include <smc.h>
+=======
 // From module: Standard serial I/O (stdio) - SAM implementation
 #include <stdio_serial.h>
+>>>>>>> bb6f02efff64dcea753b21c906b2942c893f2f69
 
 // From module: System Clock Control - SAM4S implementation
 #include <sysclk.h>
