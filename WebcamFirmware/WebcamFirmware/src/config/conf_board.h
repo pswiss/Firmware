@@ -34,8 +34,9 @@
 #define TC_IRQn     TC2_IRQn
 //! [tc_define_irq_handler]
 
-#define WIFI_RESET PIO_PB1	//WIFI_RESET PIN
-#define LED_PIN PIO_PA20_IDX //LED pin
+#define WIFI_RESET		PIO_PB1	//WIFI_RESET PIN
+#define NETWORK_STATUS	PIO_PB2 //Network Status Pin
+#define PUSH_BUTTON		PIO_PB4 //Web Setup Pin
 
 #endif /* CONF_BOARD_H_INCLUDED */
 <<<<<<< HEAD
