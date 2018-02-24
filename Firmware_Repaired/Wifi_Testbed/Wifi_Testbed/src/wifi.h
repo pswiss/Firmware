@@ -60,8 +60,6 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #define PUSH_BUTTON_ATTR               PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
 
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Wifi Responses
 #define wifiResponse00 "Command Not Found"
@@ -73,7 +71,7 @@ volatile uint32_t received_byte_wifi;
 volatile bool new_rx_wifi;
 volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
 volatile uint32_t input_pos_wifi;
-volatile uint32_t counts;
+volatile uint8_t counts;
 // Variables: interrupt flag
 volatile bool wifi_setup_flag;
 

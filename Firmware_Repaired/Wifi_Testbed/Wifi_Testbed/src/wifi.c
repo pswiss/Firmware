@@ -23,7 +23,7 @@ volatile bool new_rx_wifi = false;
 volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
 volatile uint32_t input_pos_wifi = 0;
 
-volatile uint32_t counts = 0;
+volatile uint8_t counts = 0;
 
 volatile bool wifi_setup_flag = false;
 

@@ -4,19 +4,21 @@
 
 src\ASF\common\utils\stdio\read.c
 
+src\ASF\common\utils\stdio\write.c
+
 src\ASF\sam\drivers\pio\pio_handler.c
 
 src\ASF\sam\drivers\usart\usart.c
 
 src\ASF\sam\drivers\wdt\wdt.c
 
-src\ASF\common\utils\stdio\write.c
+src\timer_interface.c
+
+src\wifi.c
 
 src\ASF\common\services\serial\usart_serial.c
 
 src\ASF\common\services\clock\sam4s\sysclk.c
-
-src\ASF\sam\drivers\pdc\pdc.c
 
 src\ASF\sam\drivers\pio\pio.c
 
@@ -27,8 +29,6 @@ src\ASF\sam\drivers\tc\tc.c
 src\ASF\sam\drivers\uart\uart.c
 
 src\ASF\sam\drivers\pmc\sleep.c
-
-src\wifi.c
 
 src\ASF\common\boards\user_board\init.c
 
