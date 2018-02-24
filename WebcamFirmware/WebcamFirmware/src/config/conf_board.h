@@ -35,6 +35,7 @@
 //! [tc_define_irq_handler]
 
 #define WIFI_RESET PIO_PB1	//WIFI_RESET PIN
+#define LED_PIN PIO_PA20_IDX //LED pin
 
 #endif /* CONF_BOARD_H_INCLUDED */
 <<<<<<< HEAD
