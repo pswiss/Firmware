@@ -8,8 +8,8 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 
-#ifndef CONF_BOARD_H
-#define CONF_BOARD_H
+#ifndef CAMERA_H_
+#define CAMERA_H_
 
 #include <asf.h>
 
@@ -38,4 +38,4 @@
 // Image sensor data pin.
 #define OV7740_DATA_BUS_PIO            OV_DATA_BUS_PIO
 
-#endif // CONF_BOARD_H
+#endif // CAMERA_H

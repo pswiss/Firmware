@@ -1,3 +1,5 @@
+
+
 /*
  * camera.c
  *
@@ -5,14 +7,16 @@
  *  Author: Wenjia
  */ 
 
-#include <camera.h>
+#include "camera.h"
+#include <asf.h>
+
 
 
 /* Vsync signal information (true if it's triggered and false otherwise) */
 static volatile uint32_t g_ul_vsync_flag = false;
 
 /**
- * \brief Handler for vertical synchronisation using by the OV7740 image
+ * \brief Handler for vertical synchronization using by the OV7740 image
  * sensor.
  */
 void vsync_handler(uint32_t ul_id, uint32_t ul_mask)
@@ -24,7 +28,7 @@ void vsync_handler(uint32_t ul_id, uint32_t ul_mask)
 }
 
 /**
- * \brief Intialize Vsync_Handler.
+ * \brief Initialize Vsync_Handler.
  */
 void init_vsync_interrupts(void)
 {
