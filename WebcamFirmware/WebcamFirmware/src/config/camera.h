@@ -1,15 +1,18 @@
-/**
- * \file
- *
- * \brief User board configuration template
- *
- */
 /*
- * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
- */
+ * camera.h
+ *
+ * Created: 2/14/2018 9:07:19 PM
+ *  Author: Wenjia
+ 
+ camera.h contains
+ Camera pin definitions
+ Camera TWI parameters
+ Camera function and variable declarations
+ */ 
 
-#ifndef CONF_BOARD_H
-#define CONF_BOARD_H
+
+#ifndef CAMERA_H_
+#define CAMERA_H_
 
 #include <asf.h>
 
@@ -38,4 +41,28 @@
 // Image sensor data pin.
 #define OV7740_DATA_BUS_PIO            OV_DATA_BUS_PIO
 
-#endif // CONF_BOARD_H
+void vsync_handler(uint32_t ul_id, uint32_t ul_mask);
+
+void init_vsync_interrupts(void);
+
+void configure_twi(void);
+
+void pio_capture_init(Pio *p_pio, uint32_t ul_id);
+
+uint8_t pio_capture_to_buffer(Pio *p_pio, uint8_t *uc_buf, uint32_t ul_size);
+
+void init_camera(void);
+
+void configure_camera(void);
+
+uint8_t start_capture(void);
+
+uint8_t find_image_len(void);
+
+uint8_t *g_p_uc_cap_dest_buf;
+
+uint16_t g_us_cap_rows = IMAGE_HEIGHT;
+
+uint16_t g_us_cap_line = (IMAGE_WIDTH * 2);
+
+#endif /* CAMERA_H_ */
