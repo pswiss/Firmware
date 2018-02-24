@@ -49,7 +49,7 @@ int main (void)
 	
 	ioport_set_pin_level(WIFI_RESET,LOW); //reset WIFI
 	
-	/Configure all of the camera stuff
+	//Configure all of the camera stuff
 	/*ov_init();
 	ov_configure();	*/
 	

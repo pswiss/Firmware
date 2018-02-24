@@ -11,4 +11,9 @@
 #ifndef CONF_BOARD_H
 #define CONF_BOARD_H
 
+#include <asf.h>
+
+// Wifi Reset
+#define PIN_WIFI_RESET				PIO_PB0_IDX
+
 #endif // CONF_BOARD_H
