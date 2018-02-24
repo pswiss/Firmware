@@ -2,7 +2,7 @@
 #include "wifi.h"
 #include "camera.h"
 #include "conf_board.h"
-#include "ov2640.h"
+
 #include "timer_interface.h"
 
 /** Timer counter frequency in Hz. */
@@ -49,9 +49,9 @@ int main (void)
 	
 	ioport_set_pin_level(WIFI_RESET,LOW); //reset WIFI
 	
-	//Configure all of the camera stuff
-	ov_init();
-	ov_configure();	
+	/Configure all of the camera stuff
+	/*ov_init();
+	ov_configure();	*/
 	
 	while(1){
 		// do stuff

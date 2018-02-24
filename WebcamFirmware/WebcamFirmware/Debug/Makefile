@@ -98,9 +98,6 @@ C_SRCS +=  \
 ../src/ASF/common/utils/stdio/write.c \
 ../src/ASF/sam/drivers/tc/tc.c \
 ../src/ASF/sam/drivers/wdt/wdt.c \
-../src/ov2640.c \
-../src/ov2640_table_registers.c \
-../src/timer_interface.c \
 ../src/wifi.c \
 ../src/ASF/sam/drivers/twi/twi.c \
 ../src/ASF/sam/drivers/usart/usart.c \
@@ -131,9 +128,6 @@ src/ASF/common/utils/stdio/read.o \
 src/ASF/common/utils/stdio/write.o \
 src/ASF/sam/drivers/tc/tc.o \
 src/ASF/sam/drivers/wdt/wdt.o \
-src/ov2640.o \
-src/ov2640_table_registers.o \
-src/timer_interface.o \
 src/wifi.o \
 src/ASF/sam/drivers/twi/twi.o \
 src/ASF/sam/drivers/usart/usart.o \
@@ -157,9 +151,6 @@ src/ASF/common/utils/stdio/read.o \
 src/ASF/common/utils/stdio/write.o \
 src/ASF/sam/drivers/tc/tc.o \
 src/ASF/sam/drivers/wdt/wdt.o \
-src/ov2640.o \
-src/ov2640_table_registers.o \
-src/timer_interface.o \
 src/wifi.o \
 src/ASF/sam/drivers/twi/twi.o \
 src/ASF/sam/drivers/usart/usart.o \
@@ -183,9 +174,6 @@ src/ASF/common/utils/stdio/read.d \
 src/ASF/common/utils/stdio/write.d \
 src/ASF/sam/drivers/tc/tc.d \
 src/ASF/sam/drivers/wdt/wdt.d \
-src/ov2640.d \
-src/ov2640_table_registers.d \
-src/timer_interface.d \
 src/wifi.d \
 src/ASF/sam/drivers/twi/twi.d \
 src/ASF/sam/drivers/usart/usart.d \
@@ -209,9 +197,6 @@ src/ASF/common/utils/stdio/read.d \
 src/ASF/common/utils/stdio/write.d \
 src/ASF/sam/drivers/tc/tc.d \
 src/ASF/sam/drivers/wdt/wdt.d \
-src/ov2640.d \
-src/ov2640_table_registers.d \
-src/timer_interface.d \
 src/wifi.d \
 src/ASF/sam/drivers/twi/twi.d \
 src/ASF/sam/drivers/usart/usart.d \
@@ -245,12 +230,6 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
-
-
-
-
-
-
 
 
 

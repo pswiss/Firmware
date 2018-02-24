@@ -10,12 +10,6 @@ src\ASF\sam\drivers\tc\tc.c
 
 src\ASF\sam\drivers\wdt\wdt.c
 
-src\ov2640.c
-
-src\ov2640_table_registers.c
-
-src\timer_interface.c
-
 src\wifi.c
 
 src\ASF\sam\drivers\twi\twi.c
