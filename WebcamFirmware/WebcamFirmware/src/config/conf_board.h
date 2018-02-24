@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+//<<<<<<< HEAD
 #ifndef CONF_BOARD_H_INCLUDED
 #define CONF_BOARD_H_INCLUDED
 
@@ -36,7 +36,7 @@
 #define WIFI_RESET PIO_PB1
 
 #endif /* CONF_BOARD_H_INCLUDED */
-=======
+//=======
 /**
  * \file
  *
@@ -79,4 +79,4 @@
 
 
 #endif // CONF_BOARD_H
->>>>>>> 0af65929c79cc102d58e2b1b06ea417080552b0c
+//>>>>>>> 0af65929c79cc102d58e2b1b06ea417080552b0c
