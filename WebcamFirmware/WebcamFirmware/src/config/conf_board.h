@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+
 #ifndef CONF_BOARD_H_INCLUDED
 #define CONF_BOARD_H_INCLUDED
+
 
 /** Enable Com Port. */
 #define CONF_BOARD_UART_CONSOLE
@@ -36,7 +37,20 @@
 #define WIFI_RESET PIO_PB1	//WIFI_RESET PIN
 
 #endif /* CONF_BOARD_H_INCLUDED */
+<<<<<<< HEAD
 =======
+=======
+
+/**
+ * \file
+ *
+ * \brief User board configuration template
+ *
+ */
+/*
+ * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ */
+>>>>>>> 35382b5780f20f8d3e3c3efb972b441692691d9c
 
 #ifndef CONF_BOARD_H
 #define CONF_BOARD_H
@@ -70,4 +84,4 @@
 
 
 #endif // CONF_BOARD_H
->>>>>>> 0af65929c79cc102d58e2b1b06ea417080552b0c
+//>>>>>>> 0af65929c79cc102d58e2b1b06ea417080552b0c
