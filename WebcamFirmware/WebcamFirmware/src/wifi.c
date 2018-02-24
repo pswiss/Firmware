@@ -2,27 +2,32 @@
 Authors: Petras Swissler, Sasha Portnova, Wenja Zhou
 ---------------------------------------------------------------------
 wifi.c contains
-?WiFi variable initializations.
-?void WIFI USART HANDLER(void)
-?void process incoming byte wifi(uint8 t in byte)
-- void wifi command response handler(uint32 t ul id, uint32 t ul mask)
-?void process data wifi (void)
-?void wifi web setup handler(uint32 t ul id, uint32 t ul mask)
-?void configure usart wifi(void)
-?void configure wifi comm pin(void)
-?void configure wifi web setup pin(void)
-?void write wifi command(char* comm, uint8 t cnt)
-?void write image to file(void)
+WiFi variable initializations.
+void WIFI USART HANDLER(void)
+void process incoming byte wifi(uint8 t in byte)
+void wifi command response handler(uint32 t ul id, uint32 t ul mask)
+void process data wifi (void)
+void wifi web setup handler(uint32 t ul id, uint32 t ul mask)
+void configure usart wifi(void)
+void configure wifi comm pin(void)
+void configure wifi web setup pin(void)
+void write wifi command(char* comm, uint8 t cnt)
+void write image to file(void)
 //////////////////////////////////////////////////////////////////*/
 #include "wifi.h"
 
 
 // Variables for wifi communications
-volatile uint32_t recieved_byte_wifi = 0;
+volatile uint32_t received_byte_wifi = 0;
 volatile bool new_rx_wifi = false;
 volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
 volatile uint32_t input_pos_wifi = 0;
 
+volatile uint32_t counts = 0;
+
+volatile bool wifi_setup_flag = false;
+
+volatile uint32_t receivedMessage = NO_MESSAGE;
 
 /////////////////////////////////////////////////////////////////////
 /*
@@ -38,9 +43,9 @@ void WIFI_USART_HANDLER(void)
 
 	/* Receive buffer is full. */
 	if (ul_status & US_CSR_RXBUFF) {
-		usart_read(BOARD_USART, &recieved_byte_wifi);
+		usart_read(BOARD_USART, &received_byte_wifi);
 		new_rx_wifi = true;
-		process_incoming_byte_wifi((uint8_t)recieved_byte_wifi);
+		process_incoming_byte_wifi((uint8_t)received_byte_wifi);
 	}
 }
 
@@ -83,7 +88,7 @@ receive the image.
 */
 void process_data_wifi (void) 
 {
-	// Compare the recieved string with some other string
+	// Compare the received string with some other string
 	if(strstr(buffer_wifi, "StringToCompare")){
 		// Do something
 	}
@@ -95,7 +100,10 @@ request to initiate web setup
 */
 void wifi_web_setup_handler(uint32_t ul_id, uint32_t ul_mask) 
 {
-	
+	unused(ul_id);
+	unused(ul_mask);
+
+	wifi_setup_flag = true;
 }
 
 /*
@@ -148,8 +156,6 @@ void configure_usart_wifi(void)
 
 	/* Configure and enable interrupt of USART. */
 	NVIC_EnableIRQ(USART_IRQn);
-	
-	
 }
 
 /*
@@ -181,7 +187,22 @@ Configuration of button interrupt to initiate web setup.
 */
 void configure_wifi_web_setup_pin(void) 
 {
-	
+	/* Configure PIO clock. */
+	pmc_enable_periph_clk(PUSH_BUTTON_ID);
+
+	/* Adjust PIO debounce filter using a 10 Hz filter. */
+	pio_set_debounce_filter(PUSH_BUTTON_PIO, PUSH_BUTTON_PIN_MSK, 10);
+
+	/* Initialize PIO interrupt handler, see PIO definition in conf_board.h
+	**/
+	pio_handler_set(PUSH_BUTTON_PIO, PUSH_BUTTON_ID, PUSH_BUTTON_PIN_MSK,
+			PUSH_BUTTON_ATTR, wifi_web_setup_handler);
+
+	/* Enable PIO controller IRQs. */
+	NVIC_EnableIRQ((IRQn_Type)PUSH_BUTTON_ID);
+
+	/* Enable PIO interrupt lines. */
+	pio_enable_interrupt(PUSH_BUTTON_PIO, PUSH_BUTTON_PIN_MSK);
 }
 
 /*
@@ -191,8 +212,23 @@ to zero, which will automatically increment every second, and waiting while coun
 */
 void write_wifi_command(char* comm, uint8_t cnt) 
 {
+	counts = 0;
 	// send a message via USART:
-	usart_write_line(BOARD_USART, "string to write\r\n");
+	//usart_write_line(BOARD_USART, "string to write\r\n");
+	usart_write_line(BOARD_USART, comm);
+	receivedMessage = NO_MESSAGE;
+	// Wait for timeout or received message
+	while((counts<=cnt)&&(receivedMessage==NO_MESSAGE)){
+		// Do nothing
+	}
+	
+	// Check if a message was received
+	if(receivedMessage!=NO_MESSAGE){
+		// Action for if have received a message
+	}
+	else{
+		// Action for if have not received a message
+	}
 }
 
 /*
@@ -207,5 +243,21 @@ to sense it before moving on, or simply insert a slight delay
 */
 void write_image_to_file(void) 
 {
+	/*
+	uint32_t img_length;
+	img_length = strlen(imageToTransfer);
 	
+	// Make sure that the image is valid.
+	if(img_length != 0){
+		char sendString[80];
+		sprintf(sendString, "image transfer %d?\r\n");
+		write_wifi_command(sendString, 5);
+		
+		write_wifi_command(imageToTransfer);
+		delay(1000);
+	}
+	else{
+		break;
+	}
+	*/
 }
