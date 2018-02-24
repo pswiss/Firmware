@@ -17,7 +17,7 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 // Include necessary libraries
 #include <string.h>
 
-// Pin Definitions
+// Pin Definitions: USART
 /** USART0 pin RX */
 #define PIN_USART0_RXD    {PIO_PA5A_RXD0, PIOA, ID_PIOA, PIO_PERIPH_A, PIO_DEFAULT}
 #define PIN_USART0_RXD_IDX        (PIO_PA5_IDX)
@@ -35,8 +35,6 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #define PIN_USART0_RTS_IDX        (PIO_PA7_IDX)
 #define PIN_USART0_RTS_FLAGS      (PIO_PERIPH_A | PIO_DEFAULT)
 
-// Interrupt configurations
-
 // Communication Constants
 #define BOARD_ID_USART				ID_USART0
 #define BOARD_USART					USART0
@@ -53,6 +51,14 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #define WIFI_COM_COMPLETE_TYPE		PIO_INPUT
 #define WIFI_COM_COMPLETE_ATTR		PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
 
+// Wifi Setup Button Pin Configuration
+/* Push button pin configuration. */
+#define PUSH_BUTTON_ID                 ID_PIOB
+#define PUSH_BUTTON_PIO                PIOB
+#define PUSH_BUTTON_PIN_MSK            PIO_PB4
+// Use the edge interrupt mode to trigger on rise AND fall
+#define PUSH_BUTTON_ATTR               PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +68,18 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Variables
-volatile uint32_t recieved_byte_wifi;
+volatile uint32_t received_byte_wifi;
 volatile bool new_rx_wifi;
 volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
 volatile uint32_t input_pos_wifi;
+volatile uint32_t counts;
+// Variables: interrupt flag
+volatile bool wifi_setup_flag;
+
+volatile uint32_t uintreceivedMessage;
+
+// Messages
+#define NO_MESSAGE 0
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // function prototypes
