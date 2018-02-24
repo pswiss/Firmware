@@ -580,6 +580,12 @@
     <None Include="src\ASF\sam\drivers\wdt\wdt.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\config\camera.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\camera.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\ov2640.c">
       <SubType>compile</SubType>
     </Compile>
