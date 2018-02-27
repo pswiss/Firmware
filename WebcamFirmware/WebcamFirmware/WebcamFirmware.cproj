@@ -41,11 +41,11 @@
     <option id="common.utils.stdio.stdio_serial" value="Add" config="" content-id="Atmel.ASF" />
     <option id="sam.drivers.tc.appnote" value="Add" config="" content-id="Atmel.ASF" />
     <option id="sam.drivers.wdt" value="Add" config="" content-id="Atmel.ASF" />
-<<<<<<< HEAD
+
     <option id="sam.drivers.tc" value="Add" config="" content-id="Atmel.ASF" />
 =======
     <option id="sam.components.cmos_image_sensor.ov7740" value="Add" config="" content-id="Atmel.ASF" />
->>>>>>> 001573f2f193ed1e7c6a4d9e763e39db8596e291
+
     <option id="sam.utils.linker_scripts#atsam4s8" value="Add" config="" content-id="Atmel.ASF" />
   </options>
   <configurations>
@@ -229,12 +229,11 @@
     <file path="src/ASF/sam/drivers/tc/tc_capture_waveform_example/tc_capture_waveform_example.h" framework="" version="3.35.1" source="sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/stdio/read.c" framework="" version="3.35.1" source="common\utils\stdio\read.c" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/stdio/write.c" framework="" version="3.35.1" source="common\utils\stdio\write.c" changed="False" content-id="Atmel.ASF" />
-<<<<<<< HEAD
 =======
     <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740.c" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740.c" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740_table_registers.c" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740_table_registers.c" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740.h" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740.h" changed="False" content-id="Atmel.ASF" />
->>>>>>> 001573f2f193ed1e7c6a4d9e763e39db8596e291
+
   </files>
   <documentation help="http://asf.atmel.com/docs/3.35.1/common.applications.user_application.user_board.sam4s/html/index.html" />
   <offline-documentation help="" />
