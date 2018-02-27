@@ -6,9 +6,21 @@ src\ASF\common\utils\stdio\read.c
 
 src\ASF\common\utils\stdio\write.c
 
+src\ASF\sam\components\cmos_image_sensor\ov7740\ov7740.c
+
+src\ASF\sam\components\cmos_image_sensor\ov7740\ov7740_table_registers.c
+
 src\ASF\sam\drivers\tc\tc.c
 
 src\ASF\sam\drivers\wdt\wdt.c
+
+src\camera.c
+
+src\config\ov2640_table_registers.c
+
+src\ov2640.c
+
+src\timer_interface.c
 
 src\wifi.c
 

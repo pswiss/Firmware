@@ -246,7 +246,7 @@ to sense it before moving on, or simply insert a slight delay
 void write_image_to_file(void) 
 {
 	uint8_t imageToTransfer[50];
-	imageToTransfer = "1234";
+	imageToTransfer = {"1234"};
 	uint32_t img_length;
 	img_length = strlen(imageToTransfer);
 	
@@ -256,11 +256,11 @@ void write_image_to_file(void)
 		sprintf(sendString, "image_transfer %d?\r\n");
 		write_wifi_command(sendString, 5);
 		
-		write_wifi_command(imageToTransfer);
+		write_wifi_command(imageToTransfer,5);
 		delay_ms(500);
 	}
 	else{
-		break;
+		
 	}
 	
 }
