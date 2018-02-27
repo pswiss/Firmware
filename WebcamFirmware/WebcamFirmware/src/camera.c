@@ -173,7 +173,7 @@ this function is included in the init_camera function above
 uint8_t start_capture(void)
 {
 		/* Set capturing destination address*/
-	g_p_uc_cap_dest_buf = (uint8_t *)CAP_DEST;
+	//g_p_uc_cap_dest_buf = (uint8_t *)CAP_DEST;
 
 	/* Set cap_rows value*/
 	//g_us_cap_rows = IMAGE_HEIGHT;

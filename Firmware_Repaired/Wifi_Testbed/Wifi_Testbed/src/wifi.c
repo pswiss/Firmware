@@ -246,7 +246,7 @@ to sense it before moving on, or simply insert a slight delay
 void write_image_to_file(void) 
 {
 	uint8_t imageToTransfer[50];
-	imageToTransfer = {"1234"};
+	strncpy(imageToTransfer,"1234",50);
 	uint32_t img_length;
 	img_length = strlen(imageToTransfer);
 	

@@ -8,7 +8,7 @@ int main (void)
 	sysclk_init();
 	wdt_disable(WDT);
 	board_init();
-	/*
+
 	configure_tc();
 	tc_start(TC0, 0);
 	
@@ -17,12 +17,12 @@ int main (void)
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
-	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
-	
-*/
+	//ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+
 	
 	while(1){
-		// do stuff
+		write_image_to_file();
+		delay_ms(5000);
 	}
 	
 }
