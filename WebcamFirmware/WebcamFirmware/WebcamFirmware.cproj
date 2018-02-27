@@ -41,7 +41,11 @@
     <option id="common.utils.stdio.stdio_serial" value="Add" config="" content-id="Atmel.ASF" />
     <option id="sam.drivers.tc.appnote" value="Add" config="" content-id="Atmel.ASF" />
     <option id="sam.drivers.wdt" value="Add" config="" content-id="Atmel.ASF" />
+<<<<<<< HEAD
     <option id="sam.drivers.tc" value="Add" config="" content-id="Atmel.ASF" />
+=======
+    <option id="sam.components.cmos_image_sensor.ov7740" value="Add" config="" content-id="Atmel.ASF" />
+>>>>>>> 001573f2f193ed1e7c6a4d9e763e39db8596e291
     <option id="sam.utils.linker_scripts#atsam4s8" value="Add" config="" content-id="Atmel.ASF" />
   </options>
   <configurations>
@@ -225,6 +229,12 @@
     <file path="src/ASF/sam/drivers/tc/tc_capture_waveform_example/tc_capture_waveform_example.h" framework="" version="3.35.1" source="sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/stdio/read.c" framework="" version="3.35.1" source="common\utils\stdio\read.c" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/common/utils/stdio/write.c" framework="" version="3.35.1" source="common\utils\stdio\write.c" changed="False" content-id="Atmel.ASF" />
+<<<<<<< HEAD
+=======
+    <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740.c" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740_table_registers.c" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740_table_registers.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam/components/cmos_image_sensor/ov7740/ov7740.h" framework="" version="3.35.1" source="sam\components\cmos_image_sensor\ov7740\ov7740.h" changed="False" content-id="Atmel.ASF" />
+>>>>>>> 001573f2f193ed1e7c6a4d9e763e39db8596e291
   </files>
   <documentation help="http://asf.atmel.com/docs/3.35.1/common.applications.user_application.user_board.sam4s/html/index.html" />
   <offline-documentation help="" />
@@ -251,6 +261,7 @@
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
+      <Value>OV7740_TWIHS_SUPPORT=false</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -281,6 +292,7 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -329,9 +341,10 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=USER_BOARD -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=USER_BOARD -Dprintf=iprintf -Dscanf=iscanf -DOV7740_TWIHS_SUPPORT=false</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>../src/ASF/common/boards</Value>
@@ -360,6 +373,7 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -380,6 +394,7 @@
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
+      <Value>OV7740_TWIHS_SUPPORT=false</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -410,6 +425,7 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -459,10 +475,11 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=USER_BOARD -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
+  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=USER_BOARD -Dprintf=iprintf -Dscanf=iscanf -DOV7740_TWIHS_SUPPORT=false</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>../src/ASF/common/boards</Value>
@@ -491,6 +508,7 @@
       <Value>../src/ASF/sam/drivers/tc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/sam/components/cmos_image_sensor/ov7740</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -521,6 +539,9 @@
     <Folder Include="src\ASF\common\utils\stdio\" />
     <Folder Include="src\ASF\common\utils\stdio\stdio_serial\" />
     <Folder Include="src\ASF\sam\" />
+    <Folder Include="src\ASF\sam\components\" />
+    <Folder Include="src\ASF\sam\components\cmos_image_sensor\" />
+    <Folder Include="src\ASF\sam\components\cmos_image_sensor\ov7740\" />
     <Folder Include="src\ASF\sam\drivers\" />
     <Folder Include="src\ASF\sam\drivers\pio\" />
     <Folder Include="src\ASF\sam\drivers\pmc\" />
@@ -564,6 +585,15 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ASF\common\utils\stdio\write.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\sam\components\cmos_image_sensor\ov7740\ov7740.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\components\cmos_image_sensor\ov7740\ov7740.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\components\cmos_image_sensor\ov7740\ov7740_table_registers.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ASF\sam\drivers\tc\tc.c">

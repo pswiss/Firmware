@@ -61,8 +61,6 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Wifi Responses
-#define wifiResponse00 "Command Not Found"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +76,20 @@ volatile bool wifi_setup_flag;
 volatile uint32_t uintreceivedMessage;
 
 // Messages
-#define NO_MESSAGE 0
+#define NO_MESSAGE					0
+
+#define NOT_CONNECTED				1
+#define msg_NOT_CONNECTED			"Client not connected"
+
+#define START_TRANSFER				2
+#define msg_START_TRANSFER			"Start transfer"
+
+#define TRANSFER_COMPLETE			3
+#define msg_COMPLETE				"Complete"
+
+#define msg_WEBSOCKET_CONNECTED		"Websocket connected"
+#define msg_WEBSOCKET_DISCONNECTED	"Websocket disconnected"
+#define msg_UNKNOWN_COMMAND			"Unknown command"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // function prototypes
