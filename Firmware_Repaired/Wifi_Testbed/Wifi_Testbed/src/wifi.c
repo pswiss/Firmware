@@ -92,6 +92,9 @@ void process_data_wifi (void)
 	if(strstr(buffer_wifi, "StringToCompare")){
 		// Do something
 	}
+	if(strstr(buffer_wifi,msg_START_TRANSFER)){
+		receivedMessage = START_TRANSFER;
+	}
 }
 
 /*
@@ -122,8 +125,7 @@ void configure_usart_wifi(void)
 	gpio_configure_pin(PIN_USART0_RTS_IDX, PIN_USART0_RTS_FLAGS);
 	
 	// might just pull wifi_cts low
-
-	
+		
 	
 	static uint32_t ul_sysclk;
 	const sam_usart_opt_t usart_console_settings = {
@@ -243,21 +245,22 @@ to sense it before moving on, or simply insert a slight delay
 */
 void write_image_to_file(void) 
 {
-	/*
+	uint8_t imageToTransfer[50];
+	imageToTransfer = "hi"
 	uint32_t img_length;
 	img_length = strlen(imageToTransfer);
 	
 	// Make sure that the image is valid.
 	if(img_length != 0){
 		char sendString[80];
-		sprintf(sendString, "image transfer %d?\r\n");
+		sprintf(sendString, "image_transfer %d?\r\n");
 		write_wifi_command(sendString, 5);
 		
 		write_wifi_command(imageToTransfer);
-		delay(1000);
+		delay_ms(500);
 	}
 	else{
 		break;
 	}
-	*/
+	
 }

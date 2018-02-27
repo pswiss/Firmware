@@ -49,16 +49,13 @@ int main (void)
 	
 	ioport_set_pin_level(WIFI_RESET,LOW); //reset WIFI
 	
-	uint32_t ul_status;	
-	ul_status = usart_get_status(BOARD_USART);
-		
-	
-	//Configure all of the camera stuff
-	/*ov_init();
-	ov_configure();	*/
-	
+			
 	while(1){
-		
+		ioport_get_pin_level(NETWORK_STATUS);	
+		ioport_get_pin_level(PUSH_BUTTON);
+		if()	
 	}
-	
+		//Configure all of the camera stuff
+	init_camera();
+	configure_camera();
 }
