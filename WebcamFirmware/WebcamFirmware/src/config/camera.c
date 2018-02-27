@@ -8,7 +8,7 @@
  camera.c contains
  void vsync_handler(uint32_t ul_id, uint32_t ul_mask)
  void init_vsync_interrupts(void)
- ?void configure_twi(void);
+ void configure_twi(void);
  void pio_capture_init(Pio *p_pio, uint32_t ul_id)
  uint8_t pio_capture_to_buffer(Pio *p_pio, uint8_t *uc_buf, uint32_t ul_size)
  void init_camera(void)
@@ -41,7 +41,7 @@ void vsync_handler(uint32_t ul_id, uint32_t ul_mask)
  */
 void init_vsync_interrupts(void)
 {
-		/* Initialize PIO interrupt handler, see PIO definition in conf_board.h
+		/* Initialize PIO interrupt handler, see PIO definition in camera.h
 	**/
 	pio_handler_set(OV7740_VSYNC_PIO, OV7740_VSYNC_ID, OV7740_VSYNC_MASK,
 			OV7740_VSYNC_TYPE, vsync_handler);
@@ -52,6 +52,7 @@ void init_vsync_interrupts(void)
 
 /**
 void configure_twi(void);
+this function is included in the init_camera function
 */
 /* TWI clock frequency in Hz (400KHz) */
 #define TWI_CLK     (400000UL)
@@ -157,13 +158,17 @@ void init_camera(void)
 	}
 
 	/* ov7740 configuration */
-	ov_configure(BOARD_TWI, QVGA_YUV422_20FPS);
+	/*ov_configure(BOARD_TWI, QVGA_YUV422_20FPS);*/
+	ov_configure(BOARD_TWI, JPEG_320x240);
 
 	/* Wait 3 seconds to let the image sensor to adapt to environment */
 	delay_ms(3000);
 }
 
+/*
 void configure_camera(void);
+this function is included in the init_camera function above
+*/
 
 uint8_t start_capture(void)
 {
@@ -171,7 +176,7 @@ uint8_t start_capture(void)
 	g_p_uc_cap_dest_buf = (uint8_t *)CAP_DEST;
 
 	/* Set cap_rows value*/
-	g_us_cap_rows = IMAGE_HEIGHT;
+	//g_us_cap_rows = IMAGE_HEIGHT;
 
 	/* Enable vsync interrupt*/
 	pio_enable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
@@ -190,9 +195,12 @@ uint8_t start_capture(void)
 
 	/* Capture data and send it to external SRAM memory thanks to PDC
 	 * feature */
-	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
+	/*pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
 			(g_us_cap_line * g_us_cap_rows) >> 2);
-
+*/
+	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
+	(g_us_cap_size) >> 2);
+	
 	/* Wait end of capture*/
 	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) ==
 			PIO_PCIMR_RXBUFF)) {
@@ -207,6 +215,16 @@ uint8_t start_capture(void)
 
 uint8_t find_image_len(void)
 {
+	int i=0;
+	if(g_p_uc_cap_dest_buf[0]=='ff'& g_p_uc_cap_dest_buf[1]=='d8'){
+		while(!(g_p_uc_cap_dest_buf[i]=='ff'& g_p_uc_cap_dest_buf[i+1]=='d9')){
+			i++;
+		}
+		return(i);
+	}
+	else{
+		return(0);
+	}
 }
 
 

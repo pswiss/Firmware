@@ -55,7 +55,13 @@ int main (void)
 		ioport_get_pin_level(PUSH_BUTTON);
 		if()	
 	}
-		//Configure all of the camera stuff
+	
+	//initialize camera and start capture
 	init_camera();
-	configure_camera();
+	start_capture();
+	
+	//send the image to wifi if length is nonzero
+	if(find_image_len()){
+		//send image to wifi
+	}
 }
