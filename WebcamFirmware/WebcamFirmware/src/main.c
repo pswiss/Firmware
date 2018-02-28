@@ -47,18 +47,38 @@ int main (void)
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
-	ioport_set_pin_level(WIFI_RESET,LOW); //reset WIFI
-	
-			
-	while(1){
-		ioport_get_pin_level(NETWORK_STATUS);	
-		ioport_get_pin_level(PUSH_BUTTON);
-		if()	
-	}
-	
 	//initialize camera and start capture
 	init_camera();
 	start_capture();
+	
+	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+	delay_ms(50);
+	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
+	
+	while(ioport_get_pin_level(PIN_WIFI_RESET)==0){
+		ioport_get_pin_level(PUSH_BUTTON)
+		if(wifi_setup_flag == true){
+			write_wifi_command('web setup',500);
+			wifi_setup_flag = false;
+		}
+	}
+	
+			
+	while(1){
+		if(wifi_setup_flag == true){
+			write_wifi_command('web setup',500);
+			wifi_setup_flag = false;
+		}
+		else{
+			int a = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS); //check if connected to a network
+			if(a == 1){												//if yes, are there any open streams?
+				// are there any open streams???
+				//if yes, write_image_to_file();
+				//if no, delay_ms(500)
+			}
+		}	
+	}
+	
 	
 	//send the image to wifi if length is nonzero
 	if(find_image_len()){
