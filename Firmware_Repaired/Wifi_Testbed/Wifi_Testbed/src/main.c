@@ -9,8 +9,8 @@ int main (void)
 	wdt_disable(WDT);
 	board_init();
 
-	configure_tc();
-	tc_start(TC0, 0);
+	//configure_tc();
+	//tc_start(TC0, 0);
 	
 	// Configure all of the wifi stuff
 	configure_usart_wifi();
@@ -20,12 +20,21 @@ int main (void)
 	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
 	delay_ms(50);
 	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
-	delay_ms(5000);
+	
+	// Wait until network status is ok
+	int ns = 0;
+	while(ns==LOW){
+		ns = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS);
+		// do nothing
+	}
 
 	
 	while(1){
+    
 		write_image_to_file();
-		delay_ms(5000);
+		delay_ms(500);
+		
+		
 	}
 	
 }
