@@ -608,13 +608,13 @@
     <Compile Include="src\camera.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\config\ov2640_table_registers.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\ov2640.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ov2640.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ov2640_table_registers.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\timer_interface.c">

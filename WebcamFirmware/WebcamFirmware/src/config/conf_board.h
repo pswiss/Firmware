@@ -39,9 +39,6 @@
 #define PUSH_BUTTON		PIO_PB4 //Web Setup Pin
 
 #endif /* CONF_BOARD_H_INCLUDED */
-<<<<<<< HEAD
-=======
-=======
 
 /**
  * \file
@@ -52,7 +49,6 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
->>>>>>> 35382b5780f20f8d3e3c3efb972b441692691d9c
 
 #ifndef CONF_BOARD_H
 #define CONF_BOARD_H
@@ -60,4 +56,4 @@
 #include <asf.h>
 
 #endif // CONF_BOARD_H
-//>>>>>>> 0af65929c79cc102d58e2b1b06ea417080552b0c
+

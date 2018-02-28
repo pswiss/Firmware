@@ -11,6 +11,7 @@
 #include <asf.h>
 #include <board.h>
 #include <conf_board.h>
+#include "wifi.h"
 
 
 void board_init(void)
@@ -19,4 +20,6 @@ void board_init(void)
 	ioport_init();
 	ioport_set_pin_dir(PIN_WIFI_RESET,IOPORT_DIR_OUTPUT);
 	ioport_set_pin_level(PIN_WIFI_RESET,HIGH);
+
+	ioport_set_pin_dir(PIN_WIFI_NETWORK_STATUS,IOPORT_DIR_OUTPUT);
 }

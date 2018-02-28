@@ -39,23 +39,30 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 #define BOARD_ID_USART				ID_USART0
 #define BOARD_USART					USART0
 #define BOARD_USART_BAUDRATE		115200
-#define USART_Handler				USART0_Handler
+#define WIFI_USART_HANDLER			USART0_Handler
 #define USART_IRQn					USART0_IRQn
 #define ALL_INTERRUPT_MASK			0xffffffff
 #define MAX_INPUT_WIFI				1000
 
-// Command Complete Pin configuration
-#define WIFI_COM_COMPLETE_ID		ID_PIOB
-#define WIFI_COM_COMPLETE_PIO		PIOB
-#define WIFI_COM_COMPLETE_MSK		PIO_PB4
+// Command Complete Pin configuration: PA12
+#define WIFI_COM_COMPLETE_ID		ID_PIOA
+#define WIFI_COM_COMPLETE_PIO		PIOA
+#define WIFI_COM_COMPLETE_MSK		PIO_PA12
 #define WIFI_COM_COMPLETE_TYPE		PIO_INPUT
-#define WIFI_COM_COMPLETE_ATTR		PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
+#define WIFI_COM_COMPLETE_ATTR		PIO_PULLUP | PIO_IT_RISE_EDGE
+// removed: PIO_DEBOUNCE
 
-// Wifi Setup Button Pin Configuration
+// Wifi network connected pin configuration
+#define PIN_WIFI_NETWORK_STATUS		PIO_PA11_IDX
+
+// Wifi Reset Pin
+#define PIN_WIFI_RESET PIO_PB1_IDX
+
+// Wifi Setup Button Pin Configuration: PA0 on the breakout board
 /* Push button pin configuration. */
-#define PUSH_BUTTON_ID                 ID_PIOB
-#define PUSH_BUTTON_PIO                PIOB
-#define PUSH_BUTTON_PIN_MSK            PIO_PB4
+#define PUSH_BUTTON_ID                 ID_PIOA
+#define PUSH_BUTTON_PIO                PIOA
+#define PUSH_BUTTON_PIN_MSK            PIO_PA0
 // Use the edge interrupt mode to trigger on rise AND fall
 #define PUSH_BUTTON_ATTR               PIO_PULLUP | PIO_DEBOUNCE | PIO_IT_EDGE
 
@@ -87,7 +94,10 @@ volatile uint32_t uintreceivedMessage;
 #define TRANSFER_COMPLETE			3
 #define msg_COMPLETE				"Complete"
 
-#define msg_WEBSOCKET_CONNECTED		"Websocket connected"
+#define CLIENT_NOT_CONNECTED		4
+#define msg_CLIENT_NOT_CONNECTED	"Client not connected"
+
+
 #define msg_WEBSOCKET_DISCONNECTED	"Websocket disconnected"
 #define msg_UNKNOWN_COMMAND			"Unknown command"
 
