@@ -253,7 +253,7 @@ void write_image_to_file(void)
 	// Make sure that the image is valid.
 	if(img_length != 0){
 		char sendString[80];
-		sprintf(sendString, "image_transfer %d?\r\n");
+		sprintf(sendString, "image_transfer %d\r\n",img_length);
 		write_wifi_command(sendString, 5);
 		
 		write_wifi_command(imageToTransfer,5);

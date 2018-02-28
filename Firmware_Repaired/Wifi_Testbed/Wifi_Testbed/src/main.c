@@ -17,7 +17,10 @@ int main (void)
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
-	//ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+	delay_ms(50);
+	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
+	delay_ms(5000);
 
 	
 	while(1){
