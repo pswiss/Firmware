@@ -15,6 +15,7 @@
 #define CAMERA_H_
 
 #include <asf.h>
+#include <ov2640.h>
 
 // Image sensor VSYNC pin.
 #define OV7740_VSYNC_PIO	       OV_VSYNC_PIO
@@ -28,11 +29,13 @@
 #define OV_VSYNC_TYPE                  PIO_PULLUP
 
 // Image sensor Power pin.
-#define OV_POWER_PIO                   OV_SW_OVT_PIO
-#define OV_POWER_MASK                  OV_SW_OVT_MASK
+//#define OV_POWER_PIO                   OV_SW_OVT_PIO
+//#define OV_POWER_MASK                  OV_SW_OVT_MASK
 /** OV_SW_OVT pin definition */
-#define OV_SW_OVT_MASK                 PIO_PC10
-#define OV_SW_OVT_PIO                  PIOC
+//#define OV_SW_OVT_MASK                 PIO_PC10
+//#define OV_SW_OVT_PIO                  PIOC
+
+#define pin_camera_ret PIO_PA20_IDX
 
 // Image sensor data pin.
 #define OV7740_DATA_BUS_PIO            OV_DATA_BUS_PIO
@@ -79,12 +82,12 @@ uint8_t start_capture(void);
 uint8_t find_image_len(void);
 
 //uint8_t *g_p_uc_cap_dest_buf;
-uint8_t g_p_uc_cap_dest_buf[100000];
+uint8_t g_p_uc_cap_dest_buf[200000];
 
 //uint16_t g_us_cap_rows = IMAGE_HEIGHT;
 
 //uint16_t g_us_cap_line = (IMAGE_WIDTH * 2);
 
-uint16_t g_us_cap_size = 100000;
+uint16_t g_us_cap_size = 40000;
 
 #endif /* CAMERA_H_ */

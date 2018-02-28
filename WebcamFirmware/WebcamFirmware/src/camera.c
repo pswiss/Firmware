@@ -130,7 +130,9 @@ void init_camera(void)
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);
 
 	/* Turn on ov7740 image sensor using power pin */
-	ov_power(true, OV_POWER_PIO, OV_POWER_MASK);
+	//ov_power(true, OV_POWER_PIO, OV_POWER_MASK);
+	/*camera will always be on, by setting pa20 high*/
+	ioport_set_pin_level(pin_camera_ret,HIGH);
 
 	/* Init PCK0 to work at 24 Mhz */
 	/* 96/4=24 Mhz */
@@ -159,7 +161,7 @@ void init_camera(void)
 
 	/* ov7740 configuration */
 	/*ov_configure(BOARD_TWI, QVGA_YUV422_20FPS);*/
-	ov_configure(BOARD_TWI, JPEG_320x240);
+	ov_configure(BOARD_TWI, JPEG_640x480);
 
 	/* Wait 3 seconds to let the image sensor to adapt to environment */
 	delay_ms(3000);
@@ -220,7 +222,7 @@ uint8_t find_image_len(void)
 		while(!(g_p_uc_cap_dest_buf[i]=='ff'& g_p_uc_cap_dest_buf[i+1]=='d9')){
 			i++;
 		}
-		return(i);
+		return(i+2);
 	}
 	else{
 		return(0);

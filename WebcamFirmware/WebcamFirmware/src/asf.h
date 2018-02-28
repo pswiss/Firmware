@@ -74,9 +74,6 @@
 // From module: Interrupt management - SAM implementation
 #include <interrupt.h>
 
-// From module: OV7740 CMOS image sensor
-#include <ov7740.h>
-
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
 
