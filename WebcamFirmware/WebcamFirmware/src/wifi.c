@@ -23,7 +23,7 @@ volatile bool new_rx_wifi = false;
 volatile uint8_t buffer_wifi[MAX_INPUT_WIFI];
 volatile uint32_t input_pos_wifi = 0;
 
-volatile uint32_t counts = 0;
+volatile uint8_t counts = 0;
 
 volatile bool wifi_setup_flag = false;
 
@@ -89,9 +89,35 @@ receive the image.
 void process_data_wifi (void) 
 {
 	// Compare the received string with some other string
-	if(strstr(buffer_wifi, "StringToCompare")){
+	/*if(strstr(buffer_wifi, "StringToCompare")){
 		// Do something
+	}*/
+	if(strstr(buffer_wifi,msg_START_TRANSFER)){
+		receivedMessage = START_TRANSFER;
 	}
+	else{
+    	if(strstr(buffer_wifi,msg_CLIENT_NOT_CONNECTED)){
+			receivedMessage = CLIENT_NOT_CONNECTED	;
+		}
+		else{
+				receivedMessage = 4000;
+    		}		      
+	}
+
+	/*#define NO_MESSAGE					0
+
+	#define NOT_CONNECTED				1
+	#define msg_NOT_CONNECTED			"Client not connected"
+
+	#define START_TRANSFER				2
+	#define msg_START_TRANSFER			"Start transfer"
+
+	#define TRANSFER_COMPLETE			3
+	#define msg_COMPLETE				"Complete"
+
+	#define msg_WEBSOCKET_CONNECTED		"Websocket connected"
+	#define msg_WEBSOCKET_DISCONNECTED	"Websocket disconnected"
+	#define msg_UNKNOWN_COMMAND			"Unknown command"*/
 }
 
 /*
@@ -111,19 +137,6 @@ Configuration of USART port used to communicate with the AMW136.
 */
 void configure_usart_wifi(void) 
 {
-	// Configure the RX / TX pins
-	/* Configure USART RXD pin */
-	gpio_configure_pin(PIN_USART0_RXD_IDX, PIN_USART0_RXD_FLAGS);
-	/* Configure USART TXD pin */
-	gpio_configure_pin(PIN_USART0_TXD_IDX, PIN_USART0_TXD_FLAGS);
-	/* Configure USART CTS pin */
-	gpio_configure_pin(PIN_USART0_CTS_IDX, PIN_USART0_CTS_FLAGS);
-	/* Configure USART RTS pin */
-	gpio_configure_pin(PIN_USART0_RTS_IDX, PIN_USART0_RTS_FLAGS);
-	
-	// might just pull wifi_cts low
-
-	
 	
 	static uint32_t ul_sysclk;
 	const sam_usart_opt_t usart_console_settings = {
@@ -156,6 +169,18 @@ void configure_usart_wifi(void)
 
 	/* Configure and enable interrupt of USART. */
 	NVIC_EnableIRQ(USART_IRQn);
+
+	// Configure the RX / TX pins
+	/* Configure USART RXD pin */
+	gpio_configure_pin(PIN_USART0_RXD_IDX, PIN_USART0_RXD_FLAGS);
+	/* Configure USART TXD pin */
+	gpio_configure_pin(PIN_USART0_TXD_IDX, PIN_USART0_TXD_FLAGS);
+	/* Configure USART CTS pin */
+	gpio_configure_pin(PIN_USART0_CTS_IDX, PIN_USART0_CTS_FLAGS);
+	/* Configure USART RTS pin */
+	gpio_configure_pin(PIN_USART0_RTS_IDX, PIN_USART0_RTS_FLAGS);
+	
+	// might just pull wifi_cts low
 }
 
 /*
@@ -218,7 +243,7 @@ void write_wifi_command(char* comm, uint8_t cnt)
 	usart_write_line(BOARD_USART, comm);
 	receivedMessage = NO_MESSAGE;
 	// Wait for timeout or received message
-	while((counts<=cnt)&&(receivedMessage==NO_MESSAGE)){
+	while((counts<cnt)&&(receivedMessage==NO_MESSAGE)){
 		// Do nothing
 	}
 	
@@ -243,21 +268,43 @@ to sense it before moving on, or simply insert a slight delay
 */
 void write_image_to_file(void) 
 {
-	/*
+	uint8_t imageToTransfer[50];
+	strncpy(imageToTransfer,"1234",50);
 	uint32_t img_length;
 	img_length = strlen(imageToTransfer);
 	
 	// Make sure that the image is valid.
 	if(img_length != 0){
 		char sendString[80];
-		sprintf(sendString, "image transfer %d?\r\n");
-		write_wifi_command(sendString, 5);
+		for(int ii = 0; ii<80; ii++){
+			sendString[ii] = 0;
+    	}
+		sprintf(sendString, "image_transfer %d\r\n",img_length);
+		write_wifi_command(&sendString, 5);
 		
-		write_wifi_command(imageToTransfer);
-		delay(1000);
+		// only send the image if the wifi chip is ready for it
+		if(receivedMessage==START_TRANSFER){
+			write_wifi_command(&imageToTransfer,0);
+			delay_ms(1000);
+			int j = 1;
+			j++;
+    	}
+		else{
+			if(receivedMessage==CLIENT_NOT_CONNECTED){
+				delay_ms(500);
+      		}	
+			else{
+				int i = 1;
+				i++;
+			}  					
+    	}
+		    
+      
+		
+		
 	}
 	else{
-		break;
+		
 	}
-	*/
+	
 }
