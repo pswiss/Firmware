@@ -56,9 +56,8 @@ int main (void)
 	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
 	
 	while(ioport_get_pin_level(PIN_WIFI_RESET)==0){
-		ioport_get_pin_level(PUSH_BUTTON)
 		if(wifi_setup_flag == true){
-			write_wifi_command('web setup',500);
+			ioport_set_pin_level(PUSH_BUTTON,LOW);
 			wifi_setup_flag = false;
 		}
 	}
@@ -66,22 +65,32 @@ int main (void)
 			
 	while(1){
 		if(wifi_setup_flag == true){
-			write_wifi_command('web setup',500);
+			ioport_set_pin_level(PUSH_BUTTON,LOW);
 			wifi_setup_flag = false;
 		}
 		else{
-			int a = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS); //check if connected to a network
-			if(a == 1){												//if yes, are there any open streams?
-				// are there any open streams???
-				//if yes, write_image_to_file();
-				//if no, delay_ms(500)
+			int b = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS); //check if connected to a network
+			if(b == 1){												//if yes, are there any open streams?
+				write_wifi_command("streams",5);
+				if(receivedMessage!=NO_MESSAGE){
+					start_capture();
+					write_image_to_file();
+				}
+				else{
+					delay_ms(1000);
+				}
+			}
+			else{
+				ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+				delay_ms(50);
+				ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
 			}
 		}	
 	}
 	
 	
 	//send the image to wifi if length is nonzero
-	if(find_image_len()){
+	/*if(find_image_len()){
 		//send image to wifi
-	}
+	}*/
 }
