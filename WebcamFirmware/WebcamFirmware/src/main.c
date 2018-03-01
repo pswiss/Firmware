@@ -1,7 +1,7 @@
 // Include necessary libraries
 #include <asf.h>
 #include "wifi.h"
-#include "camera.h"
+//#include "camera.h"
 #include "timer_interface.h"
 
 
@@ -20,9 +20,11 @@ int main (void)
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
+	/*
 	//initialize camera and start capture
 	init_camera();
 	start_capture();
+	
 	
 	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
 	delay_ms(50);
