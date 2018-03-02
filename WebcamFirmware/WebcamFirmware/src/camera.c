@@ -143,11 +143,12 @@ void init_camera(void)
 	/*camera will always be on, by setting pa20 high*/
 	ioport_set_pin_level(pin_camera_ret,HIGH);
 
-	/* Init PCK0 to work at 24 Mhz */
+	/* Init PCK1 to work at 24 Mhz */
 	/* 96/4=24 Mhz */
-	PMC->PMC_PCK[0] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLA_CLK);
-	PMC->PMC_SCER = PMC_SCER_PCK0;
-	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK0)) {
+	/// TAGTAG
+	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLA_CLK);
+	PMC->PMC_SCER = PMC_SCER_PCK1;
+	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {
 	}
 
 	/* Enable TWI peripheral */

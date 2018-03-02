@@ -25,6 +25,7 @@ int main (void)
 	
 	
 	//initialize camera and start capture
+	pmc_enable_pllack(7, 0x1,1);
 	init_camera();
 
 	//start_capture();
