@@ -15,6 +15,8 @@ int main (void)
 	wdt_disable(WDT);
 	board_init();
 	
+	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
+	
 	configure_tc();
 	tc_start(TC0, 0);
 	

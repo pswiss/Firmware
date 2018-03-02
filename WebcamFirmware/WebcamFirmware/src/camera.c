@@ -145,8 +145,8 @@ void init_camera(void)
 
 	/* Init PCK1 to work at 24 Mhz */
 	/* 96/4=24 Mhz */
-	/// TAGTAG
-	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLA_CLK);
+	/// PLLB is started at 96Mhz in main function and divided by 4 to 24Mhz to drive PCK1
+	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLB_CLK);
 	PMC->PMC_SCER = PMC_SCER_PCK1;
 	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {
 	}
