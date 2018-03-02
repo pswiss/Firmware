@@ -20,6 +20,15 @@
 
 #include <camera.h>
 
+//uint8_t *g_p_uc_cap_dest_buf;
+volatile uint8_t g_p_uc_cap_dest_buf[IMAGE_BUFFER_SIZE];
+
+//uint16_t g_us_cap_rows = IMAGE_HEIGHT;
+
+//uint16_t g_us_cap_line = (IMAGE_WIDTH * 2);
+
+volatile uint16_t g_us_cap_size = 40000;
+
 
 /* Vsync signal information (true if it's triggered and false otherwise) */
 static volatile uint32_t g_ul_vsync_flag = false;
@@ -174,6 +183,7 @@ this function is included in the init_camera function above
 
 uint8_t start_capture(void)
 {
+	
 		/* Set capturing destination address*/
 	//g_p_uc_cap_dest_buf = (uint8_t *)CAP_DEST;
 

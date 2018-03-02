@@ -16,6 +16,7 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 
 // Include necessary libraries
 #include <string.h>
+#include "camera.h"
 
 // Pin Definitions: USART
 /** USART0 pin RX */
@@ -53,10 +54,10 @@ of the pin used for wifi interfaceoiasjdfpijasdf
 // removed: PIO_DEBOUNCE
 
 // Wifi network connected pin configuration
-#define PIN_WIFI_NETWORK_STATUS		PIO_PA11_IDX
+//#define PIN_WIFI_NETWORK_STATUS		PIO_PA11_IDX
 
 // Wifi Reset Pin
-#define PIN_WIFI_RESET PIO_PB1_IDX
+//#define PIN_WIFI_RESET PIO_PB1_IDX
 
 // Wifi Setup Button Pin Configuration: PA0 on the breakout board
 /* Push button pin configuration. */
@@ -81,6 +82,8 @@ volatile uint8_t counts;
 volatile bool wifi_setup_flag;
 
 volatile uint32_t uintreceivedMessage;
+volatile uint8_t g_p_uc_cap_dest_buf[IMAGE_BUFFER_SIZE];
+
 
 // Messages
 #define NO_MESSAGE					0
@@ -96,6 +99,9 @@ volatile uint32_t uintreceivedMessage;
 
 #define CLIENT_NOT_CONNECTED		4
 #define msg_CLIENT_NOT_CONNECTED	"Client not connected"
+
+#define COMMAND_FAILED				5
+#define msg_COMMAND_FAILED			"Command failed"
 
 
 #define msg_WEBSOCKET_DISCONNECTED	"Websocket disconnected"

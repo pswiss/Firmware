@@ -82,12 +82,13 @@ uint8_t start_capture(void);
 uint8_t find_image_len(void);
 
 //uint8_t *g_p_uc_cap_dest_buf;
-uint8_t g_p_uc_cap_dest_buf[200000];
+#define IMAGE_BUFFER_SIZE 100000
+volatile uint8_t g_p_uc_cap_dest_buf[IMAGE_BUFFER_SIZE];
 
 //uint16_t g_us_cap_rows = IMAGE_HEIGHT;
 
 //uint16_t g_us_cap_line = (IMAGE_WIDTH * 2);
 
-uint16_t g_us_cap_size = 40000;
+volatile uint16_t g_us_cap_size;
 
 #endif /* CAMERA_H_ */

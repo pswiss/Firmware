@@ -1,8 +1,11 @@
 // Include necessary libraries
 #include <asf.h>
 #include "wifi.h"
-//#include "camera.h"
+#include "camera.h"
 #include "timer_interface.h"
+
+// Global variables because we're mechanical engineers
+volatile uint32_t receivedMessage;
 
 
 int main (void)
@@ -20,34 +23,43 @@ int main (void)
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
-	/*
+	
 	//initialize camera and start capture
 	init_camera();
-	start_capture();
+
+	//start_capture();
 	
 	
 	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
-	delay_ms(50);
+	delay_ms(10);
 	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
 	
-	while(ioport_get_pin_level(PIN_WIFI_RESET)==0){
+	while(ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS)==LOW){
 		if(wifi_setup_flag == true){
-			ioport_set_pin_level(PUSH_BUTTON,LOW);
+			
+			write_wifi_command("setup web\r\n", 5);
+			//ioport_set_pin_level(PUSH_BUTTON,LOW);
 			wifi_setup_flag = false;
 		}
 	}
 	
+	
 			
 	while(1){
 		if(wifi_setup_flag == true){
-			ioport_set_pin_level(PUSH_BUTTON,LOW);
+			write_wifi_command("setup web\r\n", 5);
 			wifi_setup_flag = false;
 		}
 		else{
-			int b = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS); //check if connected to a network
-			if(b == 1){												//if yes, are there any open streams?
-				write_wifi_command("streams",5);
-				if(receivedMessage!=NO_MESSAGE){
+			bool wifiNetworkConnected = ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS); //check if connected to a network
+			if(wifiNetworkConnected == true){												//if yes, are there any open streams?
+				char sendString[80];
+				for(int ii = 0; ii<80; ii++){
+					sendString[ii] = 0;
+				}
+				sprintf(sendString, "stream_poll 0\r\n");
+				write_wifi_command(&sendString,5);
+				if(receivedMessage!=COMMAND_FAILED){
 					start_capture();
 					write_image_to_file();
 				}
@@ -59,13 +71,16 @@ int main (void)
 				ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
 				delay_ms(50);
 				ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
+
+				while(ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS)==LOW){
+					if(wifi_setup_flag == true){
+						
+						write_wifi_command("setup web\r\n", 5);
+						//ioport_set_pin_level(PUSH_BUTTON,LOW);
+						wifi_setup_flag = false;
+					}
+				}
 			}
 		}	
 	}
-	
-	
-	//send the image to wifi if length is nonzero
-	/*if(find_image_len()){
-		//send image to wifi
-	}*/
 }
