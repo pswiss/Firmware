@@ -15,27 +15,32 @@ int main (void)
 	wdt_disable(WDT);
 	board_init();
 	
-	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
+	
 	
 	configure_tc();
 	tc_start(TC0, 0);
-	
+
 	// Configure all of the wifi stuff
 	configure_usart_wifi();
 	configure_wifi_comm_pin();
 	configure_wifi_web_setup_pin();
 	
 	
+	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
+	delay_ms(10);
+	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
+	
+	
+	
 	//initialize camera and start capture
+	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
 	pmc_enable_pllack(7, 0x1,1);
 	init_camera();
 
 	//start_capture();
+
 	
 	
-	ioport_set_pin_level(PIN_WIFI_RESET,LOW); //reset WIFI
-	delay_ms(10);
-	ioport_set_pin_level(PIN_WIFI_RESET,HIGH); //turn Wifi Back on
 	
 	while(ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS)==LOW){
 		if(wifi_setup_flag == true){

@@ -16,7 +16,6 @@ void write image to file(void)
 //////////////////////////////////////////////////////////////////*/
 #include "wifi.h"
 
-
 // Variables for wifi communications
 volatile uint32_t received_byte_wifi = 0;
 volatile bool new_rx_wifi = false;

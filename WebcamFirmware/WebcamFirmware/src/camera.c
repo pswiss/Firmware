@@ -34,7 +34,7 @@ volatile uint16_t g_us_cap_size = 40000;
 static volatile uint32_t g_ul_vsync_flag = false;
 
 /**
- * \brief Handler for vertical synchronisation using by the OV7740 image
+ * \brief Handler for vertical synchronisation using by the OV2640 image
  * sensor.
  */
 void vsync_handler(uint32_t ul_id, uint32_t ul_mask)
@@ -52,11 +52,11 @@ void init_vsync_interrupts(void)
 {
 		/* Initialize PIO interrupt handler, see PIO definition in camera.h
 	**/
-	pio_handler_set(OV7740_VSYNC_PIO, OV7740_VSYNC_ID, OV7740_VSYNC_MASK,
-			OV7740_VSYNC_TYPE, vsync_handler);
+	pio_handler_set(OV2640_VSYNC_PIO, OV2640_VSYNC_ID, OV2640_VSYNC_MASK,
+			OV2640_VSYNC_TYPE, vsync_handler);
 
 	/* Enable PIO controller IRQs */
-	NVIC_EnableIRQ((IRQn_Type)OV7740_VSYNC_ID);
+	NVIC_EnableIRQ((IRQn_Type)OV2640_VSYNC_ID);
 }
 
 /**
@@ -68,7 +68,7 @@ this function is included in the init_camera function
 
 
 /**
- * \brief Initialize PIO capture for the OV7740 image sensor communication.
+ * \brief Initialize PIO capture for the OV2640 image sensor communication.
  *
  * \param p_pio PIO instance to be configured in PIO capture mode.
  * \param ul_id Corresponding PIO ID.
@@ -101,9 +101,9 @@ void pio_capture_init(Pio *p_pio, uint32_t ul_id)
 
 
 /**
- * \brief Capture OV7740 data to a buffer.
+ * \brief Capture OV2640 data to a buffer.
  *
- * \param p_pio PIO instance which will capture data from OV7740 iamge sensor.
+ * \param p_pio PIO instance which will capture data from OV2640 iamge sensor.
  * \param p_uc_buf Buffer address where captured data must be stored.
  * \param ul_size Data frame size.
  */
@@ -126,7 +126,7 @@ uint8_t pio_capture_to_buffer(Pio *p_pio, uint8_t *uc_buf, uint32_t ul_size)
 
 
 /**
- * \brief Initialize PIO capture and the OV7740 image sensor.
+ * \brief Initialize PIO capture and the OV2640 image sensor.
  */
 void init_camera(void)
 {
@@ -138,10 +138,11 @@ void init_camera(void)
 	/* Init PIO capture*/
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);
 
-	/* Turn on ov7740 image sensor using power pin */
+	/* Turn on ov2640 image sensor using power pin */
 	//ov_power(true, OV_POWER_PIO, OV_POWER_MASK);
 	/*camera will always be on, by setting pa20 high*/
 	ioport_set_pin_level(pin_camera_ret,HIGH);
+
 
 	/* Init PCK1 to work at 24 Mhz */
 	/* 96/4=24 Mhz */
@@ -165,11 +166,11 @@ void init_camera(void)
 	NVIC_SetPriority(BOARD_TWI_IRQn, 0);
 	NVIC_EnableIRQ(BOARD_TWI_IRQn);
 
-	/* ov7740 Initialization */
+	/* ov2640 Initialization */
 	while (ov_init(BOARD_TWI) == 1) {
 	}
 
-	/* ov7740 configuration */
+	/* ov2640 configuration */
 	/*ov_configure(BOARD_TWI, QVGA_YUV422_20FPS);*/
 	ov_configure(BOARD_TWI, JPEG_640x480);
 
@@ -192,7 +193,7 @@ uint8_t start_capture(void)
 	//g_us_cap_rows = IMAGE_HEIGHT;
 
 	/* Enable vsync interrupt*/
-	pio_enable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
+	pio_enable_interrupt(OV2640_VSYNC_PIO, OV2640_VSYNC_MASK);
 
 	/* Capture acquisition will start on rising edge of Vsync signal.
 	 * So wait g_vsync_flag = 1 before start process
@@ -201,26 +202,26 @@ uint8_t start_capture(void)
 	}
 
 	/* Disable vsync interrupt*/
-	pio_disable_interrupt(OV7740_VSYNC_PIO, OV7740_VSYNC_MASK);
+	pio_disable_interrupt(OV2640_VSYNC_PIO, OV2640_VSYNC_MASK);
 
 	/* Enable pio capture*/
-	pio_capture_enable(OV7740_DATA_BUS_PIO);
+	pio_capture_enable(OV2640_DATA_BUS_PIO);
 
 	/* Capture data and send it to external SRAM memory thanks to PDC
 	 * feature */
-	/*pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
+	/*pio_capture_to_buffer(OV2640_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
 			(g_us_cap_line * g_us_cap_rows) >> 2);
 */
-	pio_capture_to_buffer(OV7740_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
+	pio_capture_to_buffer(OV2640_DATA_BUS_PIO, g_p_uc_cap_dest_buf,
 	(g_us_cap_size) >> 2);
 	
 	/* Wait end of capture*/
-	while (!((OV7740_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) ==
+	while (!((OV2640_DATA_BUS_PIO->PIO_PCISR & PIO_PCIMR_RXBUFF) ==
 			PIO_PCIMR_RXBUFF)) {
 	}
 
 	/* Disable pio capture*/
-	pio_capture_disable(OV7740_DATA_BUS_PIO);
+	pio_capture_disable(OV2640_DATA_BUS_PIO);
 
 	/* Reset vsync flag*/
 	g_ul_vsync_flag = false;
