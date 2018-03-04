@@ -3,6 +3,8 @@
 #include "wifi.h"
 #include "camera.h"
 #include "timer_interface.h"
+#include "conf_clock.h"
+#include "conf_board.h"
 
 // Global variables because we're mechanical engineers
 volatile uint32_t receivedMessage;
@@ -32,9 +34,9 @@ int main (void)
 	
 	
 	//initialize camera and start capture
-	//pmc_enable_periph_clk(ID_BOARD_TWI);
-	//pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
-	//pmc_enable_pllack(7, 0x1,1);
+	pmc_enable_periph_clk(ID_BOARD_TWI);
+	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
+	pmc_enable_pllack(7, 0x1,1);
 	init_camera();
 
 	//start_capture();
