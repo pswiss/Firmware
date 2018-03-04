@@ -135,6 +135,12 @@ void init_camera(void)
 	/* Init Vsync handler*/
 	init_vsync_interrupts();
 
+	gpio_configure_pin(TWI_DATA_GPIO,TWI0_DATA_FLAGS);
+	gpio_configure_pin(TWI0_CLK_GPIO,TWI_CLK_FLAGS);
+
+	gpio_configure_pin(PIN_PCK1,PIN_PCK1_FLAGS);
+	gpio_configure_pin(PIN_PCK0,PIN_PCK0_FLAGS);
+
 	/* Init PIO capture*/
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);
 

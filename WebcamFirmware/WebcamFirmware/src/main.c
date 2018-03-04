@@ -16,7 +16,6 @@ int main (void)
 	board_init();
 	
 	
-	
 	configure_tc();
 	tc_start(TC0, 0);
 
@@ -33,15 +32,13 @@ int main (void)
 	
 	
 	//initialize camera and start capture
-	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
-	pmc_enable_pllack(7, 0x1,1);
+	//pmc_enable_periph_clk(ID_BOARD_TWI);
+	//pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
+	//pmc_enable_pllack(7, 0x1,1);
 	init_camera();
 
 	//start_capture();
 
-	
-	
-	
 	while(ioport_get_pin_level(PIN_WIFI_NETWORK_STATUS)==LOW){
 		if(wifi_setup_flag == true){
 			
