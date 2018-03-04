@@ -16,7 +16,6 @@ void write image to file(void)
 //////////////////////////////////////////////////////////////////*/
 #include "wifi.h"
 
-
 // Variables for wifi communications
 volatile uint32_t received_byte_wifi = 0;
 volatile bool new_rx_wifi = false;
@@ -28,6 +27,8 @@ volatile uint8_t counts = 0;
 volatile bool wifi_setup_flag = false;
 
 volatile uint32_t receivedMessage = NO_MESSAGE;
+
+volatile uint8_t g_p_uc_cap_dest_buf[IMAGE_BUFFER_SIZE];
 
 /////////////////////////////////////////////////////////////////////
 /*
@@ -100,7 +101,12 @@ void process_data_wifi (void)
 			receivedMessage = CLIENT_NOT_CONNECTED	;
 		}
 		else{
-				receivedMessage = 4000;
+				if(strstr(buffer_wifi,msg_COMMAND_FAILED)){
+					receivedMessage = COMMAND_FAILED;
+				}
+				else{
+					receivedMessage = 4000;
+				}
     		}		      
 	}
 
@@ -246,14 +252,14 @@ void write_wifi_command(char* comm, uint8_t cnt)
 	while((counts<cnt)&&(receivedMessage==NO_MESSAGE)){
 		// Do nothing
 	}
-	
+	/*
 	// Check if a message was received
 	if(receivedMessage!=NO_MESSAGE){
 		// Action for if have received a message
 	}
 	else{
 		// Action for if have not received a message
-	}
+	}*/
 }
 
 /*
@@ -268,23 +274,23 @@ to sense it before moving on, or simply insert a slight delay
 */
 void write_image_to_file(void) 
 {
-	uint8_t imageToTransfer[50];
+	/*uint8_t imageToTransfer[50];
 	strncpy(imageToTransfer,"1234",50);
 	uint32_t img_length;
-	img_length = strlen(imageToTransfer);
+	img_length = strlen(imageToTransfer);*/
 	
 	// Make sure that the image is valid.
-	if(img_length != 0){
+	if(find_image_len() != 0){
 		char sendString[80];
 		for(int ii = 0; ii<80; ii++){
 			sendString[ii] = 0;
     	}
-		sprintf(sendString, "image_transfer %d\r\n",img_length);
+		sprintf(sendString, "image_transfer %d\r\n",find_image_len());
 		write_wifi_command(&sendString, 5);
 		
 		// only send the image if the wifi chip is ready for it
 		if(receivedMessage==START_TRANSFER){
-			write_wifi_command(&imageToTransfer,0);
+			write_wifi_command(&g_p_uc_cap_dest_buf,0);
 			delay_ms(1000);
 			int j = 1;
 			j++;
@@ -298,13 +304,7 @@ void write_image_to_file(void)
 				i++;
 			}  					
     	}
-		    
-      
-		
-		
 	}
 	else{
-		
 	}
-	
 }
