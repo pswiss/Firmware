@@ -173,7 +173,8 @@ void init_camera(void)
 	/* Turn on ov2640 image sensor using power pin */
 	//ov_power(true, OV_POWER_PIO, OV_POWER_MASK);
 	/*camera will always be on, by setting pa20 high*/
-	gpio_configure_pin(pin_camera_ret, PIO_OUTPUT_1);
+	ioport_set_pin_dir(pin_camera_ret,IOPORT_DIR_OUTPUT);
+	//gpio_configure_pin(pin_camera_ret, PIO_OUTPUT_1);
 	
 	ioport_set_pin_level(pin_camera_ret,LOW);
 	delay_ms(10);
