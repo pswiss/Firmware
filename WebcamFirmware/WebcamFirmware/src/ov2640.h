@@ -58,7 +58,7 @@ extern "C" {
 #endif
 
 /** Slave address of OMNIVISION chip. */
-#define OV_I2C_SENSOR_ADDRESS          0x30 //(0x42u >> 1)   /* OV2640 -> 0x42 */
+#define OV_I2C_SENSOR_ADDRESS          0x3D //(0x42u >> 1)   /* OV2640 -> 0x42 */
 
 /** Terminating list entry for register in configuration file. */
 #define OV_REG_TERM                    (0xffu)

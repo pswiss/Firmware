@@ -132,6 +132,9 @@ void init_camera(void)
 {
 	twi_options_t opt;
 
+	pmc_enable_periph_clk(ID_BOARD_TWI);
+	pmc_enable_pllbck(7, 0x1, 1); /* PLLB work at 96 Mhz */
+
 	/* Init Vsync handler*/
 	init_vsync_interrupts();
 
@@ -143,7 +146,7 @@ void init_camera(void)
 
 	//gpio_configure_pin(OV_SW_OVT_GPIO, OV_SW_OVT_FLAGS);
 	//gpio_configure_pin(OV_RST_GPIO, OV_RST_FLAGS);
-	gpio_configure_pin(OV_FSIN_GPIO, OV_FSIN_FLAGS);
+	//gpio_configure_pin(OV_FSIN_GPIO, OV_FSIN_FLAGS);
 	gpio_configure_pin(OV_HSYNC_GPIO, OV_HSYNC_FLAGS);
 	gpio_configure_pin(OV_VSYNC_GPIO, OV_VSYNC_FLAGS);
 	gpio_configure_pin(OV_DATA_BUS_D0, OV_DATA_BUS_FLAGS);
@@ -158,12 +161,11 @@ void init_camera(void)
 	/* Init PCK1 to work at 24 Mhz */
 	/* 96/4=24 Mhz */
 	/// PLLB is started at 96Mhz in main function and divided by 4 to 24Mhz to drive PCK1
-	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_4 | PMC_PCK_CSS_PLLB_CLK);
+	PMC->PMC_PCK[1] = (PMC_PCK_PRES_CLK_8 | PMC_PCK_CSS_PLLB_CLK);
 	PMC->PMC_SCER = PMC_SCER_PCK1;
 	while (!(PMC->PMC_SCSR & PMC_SCSR_PCK1)) {
 	}
 
-	
 
 	/* Init PIO capture*/
 	pio_capture_init(OV_DATA_BUS_PIO, OV_DATA_BUS_ID);
@@ -171,6 +173,10 @@ void init_camera(void)
 	/* Turn on ov2640 image sensor using power pin */
 	//ov_power(true, OV_POWER_PIO, OV_POWER_MASK);
 	/*camera will always be on, by setting pa20 high*/
+	gpio_configure_pin(pin_camera_ret, PIO_OUTPUT_1);
+	
+	ioport_set_pin_level(pin_camera_ret,LOW);
+	delay_ms(10);
 	ioport_set_pin_level(pin_camera_ret,HIGH);
 
 
@@ -197,7 +203,7 @@ void init_camera(void)
 	ov_configure(BOARD_TWI, JPEG_640x480);
 
 	/* Wait 3 seconds to let the image sensor to adapt to environment */
-	delay_ms(3000);
+	//delay_ms(3000);
 }
 
 /*
